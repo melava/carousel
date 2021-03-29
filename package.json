@@ -1,0 +1,22 @@
+{
+  "name": "carousel",
+  "version": "1.0.0",
+  "description": "The purpose here is to create a functional image slider (dynamic UI Interaction) and a mobile menu with JS and CSS.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/melava/carousel.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/melava/carousel/issues"
+  },
+  "homepage": "https://github.com/melava/carousel#readme",
+  "devDependencies": {
+    "webpack-cli": "^4.6.0"
+  }
+}
