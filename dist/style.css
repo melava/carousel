@@ -1,0 +1,35 @@
+#carousel-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.navigation {
+    width: 80px;
+    border: indigo 1px solid;
+    padding: 100px 0;
+    background-color: white;
+    z-index: 999;
+    text-align: center;
+}
+
+
+#carousel {
+    display: flex;
+    position: relative;
+    overflow: hidden;
+    width: 500px;
+}
+
+.image {
+    position: relative;
+    left: 0px;
+    margin: 0;
+    padding: 0;
+    transition: left 1000ms ease-in-out;
+}
+
+.image img {
+    display: block;
+    width: 500px;
+}
