@@ -6,10 +6,8 @@
 
 .navigation {
     width: 80px;
-    border: indigo 1px solid;
-    padding: 100px 0;
+    padding: 172px 0;
     background-color: white;
-    z-index: 999;
     text-align: center;
 }
 
@@ -19,14 +17,28 @@
     position: relative;
     overflow: hidden;
     width: 500px;
+    height: 333px;
+    border: lightblue 15px solid;
 }
 
 .image {
-    position: relative;
-    left: 0px;
+    position: absolute;
+    left: 500px;
     margin: 0;
     padding: 0;
     transition: left 1000ms ease-in-out;
+}
+
+.image.current-view {
+    left: 0px;
+    z-index: 999;
+}
+
+.image.next-view {
+    left: 500px;
+}
+.image.previous-view {
+    left: -500px;
 }
 
 .image img {
