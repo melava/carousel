@@ -1,19 +1,11 @@
-const previous = document.getElementById('prev');
-const next = document.getElementById('next');
 const images = Array.from(document.getElementsByClassName('image'));
 const dots = Array.from(document.getElementsByClassName('dot'));
-
 const maxIndex = images.length-1;
 
 let i = 0;
 let nextIndex = 1;
 let previousIndex = maxIndex;
-
-const dotsContent = () => {
-    dots.forEach(dot => {
-        dot.className.includes('current') ? dot.textContent = '*' : dot.textContent = 'o';
-    });
-}
+let doResizeTimeout;
 
 const previousImg = () => {
     images.forEach(image => {
@@ -35,7 +27,6 @@ const previousImg = () => {
     images[i].classList.add('current-view');
     dots.forEach(dot => dot.classList.remove('current'));
     dots[i].classList.add('current');
-    dotsContent();
 }
 
 const nextImg = () => {
@@ -58,7 +49,6 @@ const nextImg = () => {
     images[i].classList.add('current-view');
     dots.forEach(dot => dot.classList.remove('current'));
     dots[i].classList.add('current');
-    dotsContent();
 }
 
 const changeImg = (tg) => {
@@ -109,10 +99,34 @@ const runFunctionXTimes = (callback, interval, repeatTimes) => {
 }
 
 const listen = (e) => {
-    if (e.target === previous) { previousImg() }
-    else if (e.target === next) { nextImg() }
+    if (e.target.closest('#prev')) { previousImg() }
+    else if (e.target.closest('#next')) { nextImg() }
     else if (e.target.closest('.dot')) { changeImg(e.target) }
 }
 
-window.onload = dotsContent();
+const adaptSize = () => {
+    const backgroundSize = document.getElementsByClassName('image-background')[0].scrollWidth;
+    const widthRule = `.image img {width: ${backgroundSize}px}`;
+    const previousLeftRule = `.image.previous-view {left: -${backgroundSize}px !important}`;
+    const nextLeftRule = `.image.next-view {left: ${backgroundSize}px !important}`;
+    if (document.styleSheets[0].cssRules[0].selectorText !== 'h1') {
+        document.styleSheets[0].deleteRule(0);
+        document.styleSheets[0].deleteRule(0);
+        document.styleSheets[0].deleteRule(0);
+    }
+    document.styleSheets[0].insertRule(widthRule, 0);
+    document.styleSheets[0].insertRule(previousLeftRule, 1);
+    document.styleSheets[0].insertRule(nextLeftRule, 2);
+}
+
+
 window.addEventListener('click', listen)
+window.onload = () => { 
+    if (document.documentElement.clientWidth < 840) {
+        adaptSize()
+    }
+}
+window.onresize = () => {
+    clearTimeout(doResizeTimeout);
+    doResizeTimeout = setTimeout(adaptSize, 100);
+}
