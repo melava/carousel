@@ -11,8 +11,13 @@
     <body>       
         <h1>Image carousel</h1> 
         <div id="carousel-container">
-            <div id="prev" class="navigation"><<</div>
+            <div id="prev" class="navigation">
+                <div><<</div>
+            </div>
             <div id="carousel">
+                <div class="image-background">
+                    <img src="img/hills.jpg" alt="a nice image from the carousel">
+                </div>
                 <div data-position="1" class="image current-view">
                     <img src="img/forest-autumn.jpg" alt="a nice image from the carousel">
                 </div>
@@ -52,7 +57,9 @@
                     <div class="dot" data-position="9"></div>
                 </div>
             </div>
-            <div id="next" class="navigation">>></div>
+            <div id="next" class="navigation">
+                <div>>></div>
+            </div>
         </div>
 
         <script src="main.js" async defer></script>
